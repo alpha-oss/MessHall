@@ -13,7 +13,13 @@
             android:name=".Attendance"
             android:exported="false" />
         <activity
+            android:name=".signin"
+            android:exported="false" />
+        <activity
             android:name=".admin_dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".signup"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

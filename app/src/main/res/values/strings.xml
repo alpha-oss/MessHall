@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MessHall</string>
+    <string name="logo_name">Logo</string>
+    <string name="nav_bar">Nav</string>
 </resources>
