@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.22864583333333333" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_attendance.xml" value="0.22826086956521738" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_breakfast.xml" value="0.21458333333333332" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_dinner.xml" value="0.2128623188405797" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_feedback.xml" value="0.22327898550724637" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_food_options.xml" value="0.22864583333333333" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_homeuser.xml" value="0.264" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_lunch.xml" value="0.22864583333333333" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_main.xml" value="0.22864583333333333" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_menu_page.xml" value="0.22327898550724637" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_signin.xml" value="0.22327898550724637" />
+        <entry key="..\:/MessHall-1/app/src/main/res/layout/activity_signup.xml" value="0.22864583333333333" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/MessHall/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.176" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/MessHall/app/src/main/res/layout/activity_attendance.xml" value="0.264" />
         <entry key="..\:/Users/Me/AndroidStudioProjects/MessHall/app/src/main/res/layout/activity_breakfast.xml" value="0.22826086956521738" />

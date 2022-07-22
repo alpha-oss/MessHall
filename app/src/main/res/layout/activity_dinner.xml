@@ -58,12 +58,13 @@
         app:layout_constraintVertical_bias="0.923" />
 
     <EditText
-        android:id="@+id/dinnernon"
+        android:id="@+id/dinnerNon"
         android:layout_width="273dp"
         android:layout_height="195dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Non Veg"
+        android:enabled="false"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,6 +80,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Veg"
+        android:enabled="false"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

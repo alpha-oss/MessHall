@@ -30,22 +30,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.196" />
 
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="173dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:inputType="date"
-        android:text="20/07/2022"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.272" />
-
     <View
-        android:id="@+id/view5"
+        android:id="@+id/dinnnvAtt"
         android:layout_width="170dp"
         android:layout_height="120dp"
         android:background="#332E2E"
@@ -57,7 +43,7 @@
         app:layout_constraintVertical_bias="0.602" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/dinnNonAtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Menu"
@@ -125,7 +111,7 @@
     <ImageButton
         android:id="@+id/feedBtn"
         android:layout_width="55dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.901"
@@ -134,17 +120,28 @@
         app:layout_constraintVertical_bias="0.623"
         app:srcCompat="@drawable/arrow" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="49dp"
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="208dp"
         android:layout_height="48dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="40dp"
-        android:background="#FEAE49"
+        android:layout_marginBottom="8dp"
+        android:hint="date"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.041"
-        app:srcCompat="@drawable/nav" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
