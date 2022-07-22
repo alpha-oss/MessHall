@@ -22,6 +22,27 @@
             android:name=".signup"
             android:exported="false" />
         <activity
+            android:name=".breakfast"
+            android:exported="false" />
+        <activity
+            android:name=".homeuser"
+            android:exported="false" />
+        <activity
+            android:name=".menuPage"
+            android:exported="false" />
+        <activity
+            android:name=".feedback"
+            android:exported="false" />
+        <activity
+            android:name=".lunch"
+            android:exported="false" />
+        <activity
+            android:name=".dinner"
+            android:exported="false" />
+        <activity
+            android:name=".foodOptions"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

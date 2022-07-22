@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "606208764687",
+    "project_id": "messhall-1",
+    "storage_bucket": "messhall-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606208764687:android:14b3f99d649794d5492c7a",
+        "android_client_info": {
+          "package_name": "com.example.messhall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606208764687-spo53kjr7233mpr7okr162semlkq9381.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ-2mfIp7CWdL9a9aiCjOZrFLQpjADxh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606208764687-spo53kjr7233mpr7okr162semlkq9381.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

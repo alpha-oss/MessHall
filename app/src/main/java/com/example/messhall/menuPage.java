@@ -37,7 +37,7 @@ public class menuPage extends AppCompatActivity {
         btnDinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(menuPage.this,dinner.class);
+                Intent intent=new Intent(menuPage.this,foodOptions.class);
                 startActivity(intent);
             }
         });
