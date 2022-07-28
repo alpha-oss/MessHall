@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,6 +22,7 @@ public class admin_dashboard extends AppCompatActivity {
 
     Button attdBtn,menuBtn;
     EditText text1,date2;
+    Button logg;
 
 
     @Override
@@ -32,6 +34,7 @@ public class admin_dashboard extends AppCompatActivity {
 
         date2=findViewById(R.id.date2);
         text1=findViewById(R.id.text1);
+        logg=findViewById(R.id.logOut);
 
         attdBtn = findViewById(R.id.attdBtn);
         menuBtn = findViewById(R.id.menuBtn);
@@ -77,6 +80,17 @@ public class admin_dashboard extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(admin_dashboard.this,menuPage.class);
                 startActivity(intent);
+            }
+        });
+
+        logg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(admin_dashboard.this,MainActivity.class);
+                startActivity(intent);
+
+
             }
         });
 

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -18,13 +17,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -45,8 +44,8 @@ public class breakfast extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         text=findViewById(R.id.breakText);
-        btnNo=findViewById(R.id.btnNo);
-        btnYes=findViewById(R.id.btnYes);
+        btnNo=findViewById(R.id.btnNon);
+        btnYes=findViewById(R.id.btnVeg);
 
         java.util.Date date = new java.util.Date();
         date.toString();
@@ -250,51 +249,17 @@ public class breakfast extends AppCompatActivity {
 
                                 String ar = user.getUid().toString();
 
-                                Map<String, Object> city = new HashMap<>();
-                                city.put(ar,ss);
-
-//                                DocumentReference docRef = db.collection("cities").document(user.getUid());
-//                                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                        if (task.isSuccessful()) {
-//                                            DocumentSnapshot document = task.getResult();
-//                                            if (document.exists()) {
-//
-//                                                String str ="";
-//                                                str=document.getData().get(user.getUid()).toString();
-//                                            }
-//
-//                                            }
-
-
-
+//                                Map<String, Object> city = new HashMap<>();
+//                                city.put(ar,ss);
 
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                db.collection("cities").document("BJ")
-                                        .set(city,SetOptions.merge())
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                //Log.d(, "DocumentSnapshot successfully written!");
-                                                //
-//                                                count++;
-//                                                String str = Integer.toString(count);
-//                                                Bundle bundle = new Bundle();
-//                                                bundle.putString("count",str);
-//                                                Intent intent1 =new Intent(breakfast.this,Attendance.class);
-//                                                intent1.putExtras(bundle);
-                                                Intent intent = new Intent(breakfast.this,menuPage.class);
-                                                startActivity(intent);
+                                DocumentReference docRef =db.collection("cities").document("BJ");
+                                docRef.update("name", FieldValue.arrayUnion(ss));
+                                Intent intent = new Intent(breakfast.this,menuPage.class);
+                                startActivity(intent);
+//                                docRef.update("name",FieldValue.delete(ss));
 
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                //  Log.w(TAG, "Error writing document", e);
-                                            }
-                                        });
+
 
 
 
@@ -306,8 +271,8 @@ public class breakfast extends AppCompatActivity {
                         } else {
 //                    Log.d(TAG, "get failed with ", task.getException());
                         }
-                        Intent intent = new Intent(breakfast.this,menuPage.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(breakfast.this,menuPage.class);
+//                        startActivity(intent);
                     }
 
 

@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -38,8 +39,8 @@ public class lunch extends AppCompatActivity {
         setContentView(R.layout.activity_lunch);
 
         lunchText = findViewById(R.id.lunchText);
-        btnYes = findViewById(R.id.btnYes);
-        btnNo = findViewById(R.id.btnNo);
+        btnYes = findViewById(R.id.btnVeg);
+        btnNo = findViewById(R.id.btnNon);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         java.util.Date date = new java.util.Date();
@@ -228,36 +229,15 @@ public class lunch extends AppCompatActivity {
 
                                 String ar = user.getUid().toString();
 
-                                Map<String, Object> city = new HashMap<>();
-                                city.put(ar, ss);
+//                                Map<String, Object> city = new HashMap<>();
+//                                city.put(ar,ss);
 
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                db.collection("cities").document("BJ")
-                                        .set(city, SetOptions.merge())
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                //Log.d(, "DocumentSnapshot successfully written!");
-                                                //
-//                                                count++;
-//                                                String str = Integer.toString(count);
-//                                                Bundle bundle = new Bundle();
-//                                                bundle.putString("count",str);
-//                                                Intent intent1 =new Intent(breakfast.this,Attendance.class);
-//                                                intent1.putExtras(bundle);
-                                                Intent intent = new Intent(breakfast.this, menuPage.class);
-                                                startActivity(intent);
-
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                //  Log.w(TAG, "Error writing document", e);
-                                            }
-                                        });
-
-
+                                DocumentReference docRef =db.collection("cities").document("LCH");
+                                        docRef.update("name", FieldValue.arrayUnion(ss));
+                                        Intent intent = new Intent(lunch.this,menuPage.class);
+                                        startActivity(intent);
+//
 //                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
 //                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
                             } else {
@@ -266,8 +246,8 @@ public class lunch extends AppCompatActivity {
                         } else {
 //                    Log.d(TAG, "get failed with ", task.getException());
                         }
-                        Intent intent = new Intent(lunch.this, menuPage.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(lunch.this, menuPage.class);
+//                        startActivity(intent);
                     }
 
 

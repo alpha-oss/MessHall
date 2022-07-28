@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MessHall">
         <activity
+            android:name=".adbreak"
+            android:exported="false" />
+        <activity
+            android:name=".updateMenu"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".updateMenu" -->
+        <!-- android:exported="false" /> -->
+        <activity
             android:name=".Attendance"
             android:exported="false" />
         <activity

@@ -3,23 +3,35 @@ package com.example.messhall;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class dinner extends AppCompatActivity {
 
-    EditText dinnerVeg,dinnerNon;
+    EditText dinnerVeg, dinnerNon;
+    Button btnVeg, btnNon, btnNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +41,16 @@ public class dinner extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
-        dinnerNon=findViewById(R.id.dinnerNon);
-        dinnerVeg=findViewById(R.id.dinnerVeg);
+        dinnerNon = findViewById(R.id.dinnerNon);
+        dinnerVeg = findViewById(R.id.dinnerVeg);
+        btnVeg = findViewById(R.id.btnVeg);
+        btnNon = findViewById(R.id.btnNon);
+        btnNo=findViewById(R.id.btnNo);
 
-        Bundle bundle = getIntent().getExtras();
-
-        String en = bundle.getString("Enabled");
-        String ef = bundle.getString("Next");
+//        Bundle bundle = getIntent().getExtras();
+//
+//        String en = bundle.getString("Enabled");
+//        String ef = bundle.getString("Next");
 
 
         java.util.Date date = new java.util.Date();
@@ -45,310 +60,418 @@ public class dinner extends AppCompatActivity {
         DayOfWeek dayOfWeek = today.getDayOfWeek();
         String day = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault());
 
-        if(en.equals("Enabled"))
-        {
-            if(day.equals("Friday")) {
+
+        if (day.equals("Friday")) {
 
 
-                DocumentReference docRef = db.collection("Monday").document("Friday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
+            DocumentReference docRef = db.collection("Monday").document("Friday");
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String ss = "";
 
-                                ss = document.getData().get("DinnerVeg").toString();
-                                dinnerVeg.setText(ss);
+                            ss = document.getData().get("Dinner").toString();
+                            dinnerVeg.setText(ss);
 //                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
 //                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
                         } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
+//                        Log.d(TAG, "No such document");
                         }
+                    } else {
+//                    Log.d(TAG, "get failed with ", task.getException());
                     }
-                });
-            }
+                }
+            });
+        } else if (day.equals("Monday")) {
+            DocumentReference docRef = db.collection("Monday").document("M2Wwe5zrKiJlwMb4UVw4");
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String ss = "";
 
-            else if(day.equals("Monday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("M2Wwe5zrKiJlwMb4UVw4");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerVeg").toString();
-                                dinnerVeg.setText(ss);
+                            ss = document.getData().get("Dinner").toString();
+                            dinnerVeg.setText(ss);
 //                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
 //                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
                         } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
-            }
-            else if(day.equals("Tuesday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Tuesday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss;
-
-                                ss = document.getData().get("DinnerVeg").toString();
-                                dinnerVeg.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
 //                        Log.d(TAG, "No such document");
-                            }
-                        } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
                         }
-                    }
-                });
-            }
-
-            else if(day.equals("Wednesday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Wednesday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerVeg").toString();
-                                dinnerVeg.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
-                        } else {
+                    } else {
 //                    Log.d(TAG, "get failed with ", task.getException());
-                        }
                     }
-                });
-            }
-            else if(day.equals("Thursday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Thursday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerVeg").toString();
-                                dinnerVeg.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
-                        } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
-            }
-            else if(day.equals("Saturday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Saturday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerVeg").toString();
-                                dinnerVeg.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
-                        } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
-            }
-
-            else if(day.equals("Sunday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Sunday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerVeg").toString();
-                                dinnerVeg.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
-                        } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
-            }
+                }
+            });
         }
+//            else if(day.equals("Tuesday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Tuesday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss="";
+//                                String ss1="";
+//
+//                                ss = document.getData().get("DinnerVeg").toString();
+//                                ss1 = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerVeg.setText(ss);
+//                                dinnerNon.setText(ss1);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+//
+//            else if(day.equals("Wednesday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Wednesday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss = "";
+//                                String ss1="";
+//
+//                                ss = document.getData().get("DinnerVeg").toString();
+//                                ss1 = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerVeg.setText(ss);
+//                                dinnerNon.setText(ss1);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+//            else if(day.equals("Thursday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Thursday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss = "";
+//                                String ss1="";
+//
+//                                ss = document.getData().get("DinnerVeg").toString();
+//                                ss1 = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerVeg.setText(ss);
+//                                dinnerNon.setText(ss1);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+        else if (day.equals("Saturday")) {
+            DocumentReference docRef = db.collection("Monday").document("Saturday");
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String ss = "";
+                            String ss1 = "";
 
-        else if(ef.equals("Disabled"))
-        {
-
-
-
-            if(day.equals("Tuesday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Tuesday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss;
-
-                                ss = document.getData().get("DinnerNonVeg").toString();
-                                dinnerNon.setText(ss);
+                            ss = document.getData().get("DinnerVeg").toString();
+                            ss1 = document.getData().get("DinnerNonVeg").toString();
+                            dinnerVeg.setText(ss);
+                            dinnerNon.setText(ss1);
 //                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
 //                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
                         } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
-            }
-
-            else if(day.equals("Wednesday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Wednesday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerNonVeg").toString();
-                                dinnerNon.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
 //                        Log.d(TAG, "No such document");
-                            }
-                        } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
                         }
-                    }
-                });
-            }
-            else if(day.equals("Thursday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Thursday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerNonVeg").toString();
-                                dinnerNon.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
-                        } else {
+                    } else {
 //                    Log.d(TAG, "get failed with ", task.getException());
-                        }
                     }
-                });
-            }
-            else if(day.equals("Saturday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Saturday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerNonVeg").toString();
-                                dinnerNon.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
-                        } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
-            }
-
-            else if(day.equals("Sunday"))
-            {
-                DocumentReference docRef = db.collection("Monday").document("Sunday");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String ss = "";
-
-                                ss = document.getData().get("DinnerNonVeg").toString();
-                                dinnerNon.setText(ss);
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
-                            } else {
-//                        Log.d(TAG, "No such document");
-                            }
-                        } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
-            }
+                }
+            });
         }
+//
+//            else if(day.equals("Sunday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Sunday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss = "";
+//                                String ss1="";
+//
+//                                ss = document.getData().get("DinnerVeg").toString();
+//                                ss1 = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerVeg.setText(ss);
+//                                dinnerNon.setText(ss1);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+
+
+//
+//           if(day.equals("Tuesday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Tuesday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss;
+//
+//                                ss = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerNon.setText(ss);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+//
+//            else if(day.equals("Wednesday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Wednesday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss = "";
+//
+//                                ss = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerNon.setText(ss);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+//            else if(day.equals("Thursday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Thursday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss = "";
+//
+//                                ss = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerNon.setText(ss);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+//            else if(day.equals("Saturday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Saturday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss = "";
+//
+//                                ss = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerNon.setText(ss);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+//
+//            else if(day.equals("Sunday"))
+//            {
+//                DocumentReference docRef = db.collection("Monday").document("Sunday");
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String ss = "";
+//
+//                                ss = document.getData().get("DinnerNonVeg").toString();
+//                                dinnerNon.setText(ss);
+////                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+//                            } else {
+////                        Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+////                    Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//            }
+        btnNon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth mAuth;
+                mAuth = FirebaseAuth.getInstance();
+
+                FirebaseUser user = mAuth.getCurrentUser();
+
+                DocumentReference docRef = db.collection("users").document(user.getUid());
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                String ss = "";
+
+                                ss = document.getData().get("name").toString();
+
+                                String ar = user.getUid().toString();
+
+//                                Map<String, Object> city = new HashMap<>();
+//                                city.put(ar,ss);
+
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                DocumentReference docRef = db.collection("cities").document("DINNON");
+                                docRef.update("name", FieldValue.arrayUnion(ss));
+                                Intent intent = new Intent(dinner.this, menuPage.class);
+                                startActivity(intent);
+
+//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+                            } else {
+//                        Log.d(TAG, "No such document");
+                            }
+                        } else {
+//                    Log.d(TAG, "get failed with ", task.getException());
+                        }
+//                        Intent intent = new Intent(lunch.this, menuPage.class);
+//                        startActivity(intent);
+                    }
+
+
+                });
+            }
+        });
+
+        btnVeg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth mAuth;
+                mAuth = FirebaseAuth.getInstance();
+
+                FirebaseUser user = mAuth.getCurrentUser();
+
+                DocumentReference docRef = db.collection("users").document(user.getUid());
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                String ss = "";
+
+                                ss = document.getData().get("name").toString();
+
+                                String ar = user.getUid().toString();
+
+//                                Map<String, Object> city = new HashMap<>();
+//                                city.put(ar,ss);
+
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                DocumentReference docRef = db.collection("cities").document("DINV");
+                                docRef.update("name", FieldValue.arrayUnion(ss));
+                                Intent intent = new Intent(dinner.this, menuPage.class);
+                                startActivity(intent);
+
+
+//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                        Toast.makeText(breakfast.this,document.getData()["Breakfast"][0].toString(),Toast.LENGTH_LONG).show();
+                            } else {
+//                        Log.d(TAG, "No such document");
+                            }
+                        } else {
+//                    Log.d(TAG, "get failed with ", task.getException());
+                        }
+//                        Intent intent = new Intent(lunch.this, menuPage.class);
+//                        startActivity(intent);
+                    }
+
+
+                });
+
+            }
+        });
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(dinner.this, menuPage.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

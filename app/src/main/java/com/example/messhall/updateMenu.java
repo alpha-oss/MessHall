@@ -15,10 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class menuPage extends AppCompatActivity {
+public class updateMenu extends AppCompatActivity {
 
     ImageButton btnBreak,btnLunch,btnDinner;
     Button userPage;
@@ -26,7 +25,7 @@ public class menuPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_page);
+        setContentView(R.layout.activity_update_menu);
 
         btnBreak=(ImageButton) findViewById(R.id.btnBreak);
         btnLunch=(ImageButton) findViewById(R.id.btnLunch);
@@ -95,21 +94,21 @@ public class menuPage extends AppCompatActivity {
         btnBreak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(menuPage.this,breakfast.class);
+                Intent intent =new Intent(updateMenu.this,breakfast.class);
                 startActivity(intent);
             }
         });
         btnLunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(menuPage.this,lunch.class);
+                Intent intent =new Intent(updateMenu.this,lunch.class);
                 startActivity(intent);
             }
         });
         btnDinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(menuPage.this,dinner.class);
+                Intent intent=new Intent(updateMenu.this,dinner.class);
                 startActivity(intent);
             }
         });
@@ -117,7 +116,7 @@ public class menuPage extends AppCompatActivity {
         userPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(menuPage.this,homeuser.class);
+                Intent intent = new Intent(updateMenu.this,homeuser.class);
                 startActivity(intent);
             }
         });

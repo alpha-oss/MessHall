@@ -17,12 +17,12 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/userPhone"
+        android:id="@+id/userName"
         android:layout_width="208dp"
         android:layout_height="48dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="David07"
+        android:hint="Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.162"

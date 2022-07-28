@@ -29,8 +29,13 @@ public class signup extends AppCompatActivity {
 
     EditText email,password,name,usn,roomno,year,contactno,confpass;
     Button signupBtn;
+//    .+)@([a-z][A-Z]+/.[a-z][A-Z]+)$
+//    ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$
+
 
     String regularExpr="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!])[A-Za-z0-9@$!]{8,}$";
+    //String  regex = "\\\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,4}\\\\b";
+
 
 
     @Override
@@ -60,6 +65,7 @@ public class signup extends AppCompatActivity {
             public void onClick(View view) {
                 String pass1=password.getText().toString();
                 String confpass1=confpass.getText().toString();
+
 
 //                if (isValidPassword(password.getText().toString().trim())) {
 //                    Toast.makeText(signup.this, "Valid", Toast.LENGTH_SHORT).show();
@@ -156,7 +162,7 @@ public class signup extends AppCompatActivity {
 
                                 }
                                 else {
-                                    Toast.makeText(signup.this, "Invalid Password", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(signup.this, "Invalid Password or Email", Toast.LENGTH_SHORT).show();
                                 }
 
 
@@ -177,5 +183,17 @@ public class signup extends AppCompatActivity {
         return matcher.matches();
 
     }
+//    public boolean isValidEmail(final String email1)
+//    {
+//        Pattern pattern;
+//        Matcher matcher;
+//
+//        pattern = Pattern.compile(regex);
+//        matcher = pattern.matcher(email1);
+//
+//        return matcher.matches();
+//
+//    }
+
 
 }
