@@ -10,7 +10,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="85dp"
         android:background="#FEAE49"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,12 +23,13 @@
         android:layout_height="54dp"
         android:text="Sign In"
         android:textSize="40dp"
+        android:textColor="#1E1E2A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/textView13"

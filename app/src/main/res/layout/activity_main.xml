@@ -8,62 +8,44 @@
     tools:context=".MainActivity">
 
 
-
-    <TextView
-        android:id="@+id/textView24"
-        android:layout_width="183dp"
-        android:layout_height="67dp"
-        android:layout_marginBottom="232dp"
-        android:fontFamily="cursive"
-        android:gravity="center"
-        android:text="@string/app_name"
-        android:textColor="#3D424A"
-        android:textSize="45dp"
-        android:textStyle="bold"
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/home" />
 
     <Button
         android:id="@+id/logBtn"
         android:layout_width="123dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="112dp"
-        android:backgroundTint="#FEAE49"
+        android:layout_marginBottom="76dp"
+        android:backgroundTint="#3D424A"
         android:text="Login"
-        android:textColor="#1E1E2A"
+        android:textColor="#FEAE49"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/regBtn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView24"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/regBtn"
         android:layout_width="118dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="112dp"
-        android:backgroundTint="#FEAE49"
+        android:layout_marginBottom="76dp"
+        android:backgroundTint="#3D424A"
         android:text="Signup"
-        android:textColor="#1E1E2A"
+        android:textColor="#FEAE49"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/logBtn"
-        app:layout_constraintTop_toBottomOf="@+id/textView24"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/logBtn" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pg" />
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="85dp"
         android:background="#FEAE49"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,15 +20,15 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#1E1E2A"
         android:text="Breakfast Menu"
+        android:textColor="#1E1E2A"
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <EditText
         android:id="@+id/breakText"
@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnNo"
+        android:id="@+id/btnNon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#BD2222"
@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.859" />
 
     <Button
-        android:id="@+id/btnYes"
+        android:id="@+id/btnVeg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
